@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra Modern Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="task.js"></script>
+</head>
+<body>
+    <div class="bg-animation" id="bgAnimation"></div>
+    
+    <div class="calculator">
+        <h1 class="title">✨ Ultra Calculator ✨</h1>
+        
+        <div class="display">
+            <div class="display-history" id="history"></div>
+            <div class="display-current" id="current">0</div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn-function" onclick="clearAll()">AC</button>
+            <button class="btn-function" onclick="clearEntry()">CE</button>
+            <button class="btn-function" onclick="deleteLast()">⌫</button>
+            <button class="btn-operator" onclick="inputOperator('÷')">÷</button>
+
+            <button class="btn-number" onclick="inputNumber('7')">7</button>
+            <button class="btn-number" onclick="inputNumber('8')">8</button>
+            <button class="btn-number" onclick="inputNumber('9')">9</button>
+            <button class="btn-operator" onclick="inputOperator('×')">×</button>
+
+            <button class="btn-number" onclick="inputNumber('4')">4</button>
+            <button class="btn-number" onclick="inputNumber('5')">5</button>
+            <button class="btn-number" onclick="inputNumber('6')">6</button>
+            <button class="btn-operator" onclick="inputOperator('-')">-</button>
+
+            <button class="btn-number" onclick="inputNumber('1')">1</button>
+            <button class="btn-number" onclick="inputNumber('2')">2</button>
+            <button class="btn-number" onclick="inputNumber('3')">3</button>
+            <button class="btn-operator" onclick="inputOperator('+')">+</button>
+
+            <button class="btn-number btn-zero" onclick="inputNumber('0')">0</button>
+            <button class="btn-number" onclick="inputDecimal()">.</button>
+            <button class="btn-equals" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
