@@ -1,14 +1,11 @@
-// Calculator state variables
 let currentInput = '0';
 let previousInput = '';
 let operator = '';
 let waitingForNewInput = false;
 
-// DOM elements
 const currentDisplay = document.getElementById('current');
 const historyDisplay = document.getElementById('history');
 
-// Initialize background animation
 function createParticles() {
     const bgAnimation = document.getElementById('bgAnimation');
     const particleCount = 15;
@@ -32,7 +29,6 @@ function createParticles() {
     }
 }
 
-// Create ripple effect
 function createRipple(event, button) {
     const rect = button.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
@@ -52,12 +48,10 @@ function createRipple(event, button) {
     }, 600);
 }
 
-// Update display function with animation
 function updateDisplay() {
     currentDisplay.textContent = currentInput;
     historyDisplay.textContent = previousInput + ' ' + operator;
     
-    // Add success animation for calculations
     if (waitingForNewInput && operator === '') {
         currentDisplay.classList.add('success');
         setTimeout(() => {
@@ -66,7 +60,6 @@ function updateDisplay() {
     }
 }
 
-// Input number function
 function inputNumber(num) {
     if (waitingForNewInput) {
         currentInput = num;
@@ -77,7 +70,6 @@ function inputNumber(num) {
     updateDisplay();
 }
 
-// Input decimal function
 function inputDecimal() {
     if (waitingForNewInput) {
         currentInput = '0.';
@@ -88,7 +80,6 @@ function inputDecimal() {
     updateDisplay();
 }
 
-// Input operator function
 function inputOperator(nextOperator) {
     const inputValue = parseFloat(currentInput);
 
@@ -108,7 +99,6 @@ function inputOperator(nextOperator) {
     updateDisplay();
 }
 
-// Perform calculation function
 function performCalculation() {
     const prev = parseFloat(previousInput);
     const current = parseFloat(currentInput);
@@ -147,7 +137,6 @@ function performCalculation() {
     return result;
 }
 
-// Calculate function
 function calculate() {
     if (operator && previousInput !== '' && !waitingForNewInput) {
         const result = performCalculation();
@@ -161,8 +150,6 @@ function calculate() {
         updateDisplay();
     }
 }
-
-// Clear all function
 function clearAll() {
     currentInput = '0';
     previousInput = '';
@@ -172,14 +159,12 @@ function clearAll() {
     updateDisplay();
 }
 
-// Clear entry function
 function clearEntry() {
     currentInput = '0';
     currentDisplay.classList.remove('error');
     updateDisplay();
 }
 
-// Delete last character function
 function deleteLast() {
     if (currentInput.length > 1) {
         currentInput = currentInput.slice(0, -1);
@@ -189,8 +174,6 @@ function deleteLast() {
     currentDisplay.classList.remove('error');
     updateDisplay();
 }
-
-// Show error function with animation
 function showError(message) {
     currentInput = message;
     currentDisplay.classList.add('error');
@@ -199,8 +182,6 @@ function showError(message) {
         clearAll();
     }, 2500);
 }
-
-// Keyboard event handler
 document.addEventListener('keydown', function(event) {
     const key = event.key;
     
@@ -229,7 +210,6 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Add enhanced button interactions
 document.querySelectorAll('button').forEach(button => {
     button.addEventListener('click', function(event) {
         createRipple(event, this);
@@ -248,11 +228,9 @@ document.querySelectorAll('button').forEach(button => {
     });
 });
 
-// Initialize
 createParticles();
 updateDisplay();
 
-// Recreate particles on window resize
 window.addEventListener('resize', function() {
     document.getElementById('bgAnimation').innerHTML = '';
     createParticles();
